@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <ListView Margin="10,10,0,13" Name="ListView1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="494" Height="400">
+                <ListViewItem Content="Coffie"></ListViewItem>
+                <ListViewItem Content="Tea"></ListViewItem>
+                <ListViewItem Content="Orange Juice"></ListViewItem>
+                <ListViewItem Content="Milk"></ListViewItem>
+                <ListViewItem Content="Iced Tea"></ListViewItem>
+                <ListViewItem Content="Mango Shake"></ListViewItem>
+            </ListView>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Name"></TextBlock>
+            <TextBlock Text="Surname"></TextBlock>
+            <Button x:Name="Add" Background="YellowGreen" Height="25" Click="Add_Click"> Add</Button>
+        </StackPanel>
+    </Grid>
+</Window>
