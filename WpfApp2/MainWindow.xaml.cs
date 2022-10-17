@@ -32,34 +32,84 @@ namespace WpfApp2
             }
         }
       
+        static string connectionString = "Data Source=DESKTOP-7HUNHTF;" +
+            "Integrated Security=True;ApplicationIntent=ReadWrite;" +
+            " Initial Catalog=Library;";
+        SqlConnection sqlConnection = new SqlConnection(connectionString);
+        SqlDataReader reader = null;
+        List<Author> authors = new List<Author>();
         public MainWindow()
         {
             InitializeComponent();
-            var connectionString = "Data Source=STHQ0116-08;Initial Catalog=Library; User ID=admin; Password=admin";
 
-            SqlConnection sqlConnection = null;
-            List<Author> authors = new List<Author>();
-            sqlConnection = new SqlConnection(connectionString);
-           
+            ReadSql();
+        }
+
+        public void ReadSql()
+        {
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT * FROM Authors", sqlConnection);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    authors.Add(new Author
+                    {
+                        Id = (int)(reader[0]),
+                        Name = reader[1].ToString(),
+                        Surname = reader[2].ToString()
+                    });
+                }
+                foreach (Author author in authors)
+                {
+                    ListView1.Items.Add(author.ToString());
+                }
+            }
+            finally
+            {
+                if (reader != null) { reader.Close(); }
+                if (sqlConnection != null) { sqlConnection.Close(); }
+            }
 
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            string insertString = @"INSERT INTO Authors (Id,FirstName,LastName)
-                                    VALUES(16,'Kenan', 'Yusubov')";
+
+            int Id = 15;
+            string Firstname = FirstnameTxtbx.Text.ToString();
+            string Lastname = SurenameTxtbx.Text.ToString();
+            string insertString = @$"INSERT INTO Authors (Id,FirstName,LastName)
+                                    VALUES({++Id},'{Firstname}', '{Lastname}')";
             SqlCommand cmd = new();
+            
             try
-            {
+            {                
                 cmd.Connection = sqlConnection;
                 cmd.CommandText = insertString;
                 sqlConnection.Open();
                 cmd.ExecuteNonQuery();
+                SqlCommand cmd1 = new SqlCommand(@"SELECT * FROM Authors", sqlConnection);
+                reader = cmd1.ExecuteReader();               
+                while (reader.Read())
+                {
+                    authors.Add(new Author
+                    {
+                        Id = (int)(reader[0]),
+                        Name = reader[1].ToString(),
+                        Surname = reader[2].ToString()
+                    });
+                }
+                foreach (Author author in authors)
+                {
+                    ListView1.Items.Add(author.ToString());
+                }
             }
             finally
             {
-                if (sqlConnection != null)
-                    sqlConnection.Close();
+                if (sqlConnection != null){ sqlConnection.Close(); }
+                if (reader != null) { reader.Close(); }
             }
         }
     }

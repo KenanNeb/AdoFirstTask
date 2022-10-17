@@ -11,21 +11,20 @@
             <ColumnDefinition Width="6*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        
         <StackPanel Grid.Column="0">
             <ListView Margin="10,10,0,13" Name="ListView1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="494" Height="400">
-                <ListViewItem Content="Coffie"></ListViewItem>
-                <ListViewItem Content="Tea"></ListViewItem>
-                <ListViewItem Content="Orange Juice"></ListViewItem>
-                <ListViewItem Content="Milk"></ListViewItem>
-                <ListViewItem Content="Iced Tea"></ListViewItem>
-                <ListViewItem Content="Mango Shake"></ListViewItem>
+               
             </ListView>
 
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBlock Text="Name"></TextBlock>
-            <TextBlock Text="Surname"></TextBlock>
-            <Button x:Name="Add" Background="YellowGreen" Height="25" Click="Add_Click"> Add</Button>
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="Name"></TextBlock>
+            <TextBox Grid.Row="0" Margin="0,0,40,15" x:Name="FirstnameTxtbx"></TextBox>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="Surname"></TextBlock>
+            <TextBox Grid.Row="2" Margin="0,0,40,15" x:Name="SurenameTxtbx"></TextBox>
+            <Button x:Name="Add" Margin="0,0,40,15" Background="YellowGreen" Height="25" Click="Add_Click"> Add</Button>
         </StackPanel>
     </Grid>
 </Window>
