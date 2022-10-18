@@ -21,9 +21,9 @@
         <StackPanel Grid.Column="1">
 
             <TextBlock Grid.Column="1" Grid.Row="0" Text="Name"></TextBlock>
-            <TextBox Grid.Row="0" Margin="0,0,40,15" x:Name="FirstnameTxtbx"></TextBox>
+            <TextBox Grid.Row="0" Margin="0,0,40,15" x:Name="Firstname_txtbx"></TextBox>
             <TextBlock Grid.Column="1" Grid.Row="0" Text="Surname"></TextBlock>
-            <TextBox Grid.Row="2" Margin="0,0,40,15" x:Name="SurenameTxtbx"></TextBox>
+            <TextBox Grid.Row="2" Margin="0,0,40,15" x:Name="Lastname_Txtbx"></TextBox>
             <Button x:Name="Add" Margin="0,0,40,15" Background="YellowGreen" Height="25" Click="Add_Click"> Add</Button>
         </StackPanel>
     </Grid>
